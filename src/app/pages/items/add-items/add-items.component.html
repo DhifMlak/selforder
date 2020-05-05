@@ -1,0 +1,95 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-12"> 
+                                    <a routerLink="/menu/items"><mat-icon>arrow_back</mat-icon></a>
+                                </div>                 
+                                <div class="col-md-3 col-sm-12">
+                                    <button mat-flat-button color="basic">Delete</button>&nbsp;
+                                    <button mat-flat-button color="basic">Duplicate</button>&nbsp;
+                                    <button type="submit" mat-flat-button color="primary" [disabled]="itemForm.invalid" (click)="onSubmit()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form #itemForm= "ngForm" class="example-form" >
+                                     <mat-form-field class="example-full-width">
+                                     <input matInput placeholder="Name"  name="nameControl" [(ngModel)]="item.name" #nameControl="ngModel" required>
+                                     <mat-error *ngIf="nameControl.hasError('required')">Name is required</mat-error>
+                                </mat-form-field>  
+                                <br/>
+                                <h3>Photo</h3><br/>
+                                
+                                    <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                                    <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+                                    <img src="assets/img/icons/ic-upload-file.svg" alt="">
+                                    <h3>Drag and drop file here</h3>
+                                    <h3>or</h3>
+                                    <label for="fileDropRef">Browse for file</label>
+                                  </div>
+                                 <br>
+                                 <mat-form-field class="example-half-width">
+                                    <mat-label>Description(optional)</mat-label>
+                                    <textarea matInput placeholder="" name="descriptionControl" [(ngModel)]="item.description" #descriptionControl="ngModel"></textarea>
+                                  </mat-form-field>
+                                  <mat-radio-group  aria-label="Sell item on its own"  (change)="OnchangeSellItem($event)">
+                                      <mat-label>Sell item on its own ?</mat-label><br>
+                                    <mat-radio-button value="yes" >Yes</mat-radio-button>
+                                    <mat-radio-button value="no">No</mat-radio-button>
+                                  </mat-radio-group>
+                                  <mat-form-field class="example-chip-list">
+                                    <mat-chip-list #chipList aria-label="New category">
+                                      <mat-chip
+                                        *ngFor="let cat of category"
+                                        [selectable]="selectable"
+                                        [removable]="removable"
+                                        (removed)="remove(cat)">
+                                        {{cat}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                      </mat-chip>
+                                      <input
+                                        placeholder="New Category..."
+                                        #fruitInput
+                                        [formControl]="categoryCtrl"
+                                        [matAutocomplete]="auto"
+                                        [matChipInputFor]="chipList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        (matChipInputTokenEnd)="add($event)">
+                                    </mat-chip-list>
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                      <mat-option *ngFor="let cat of filteredCategory | async" [value]="cat">
+                                        {{cat}}
+                                      </mat-option>
+                                    </mat-autocomplete>
+                                  </mat-form-field>
+                                  <h3>Assign this item to your existing categories</h3>
+                                  <div class="example-container">
+                                    <mat-form-field appearance="fill">
+                                        <input matInput type="number" placeholder="Default price" name="priceControl" [(ngModel)]="item.price" #priceControl="ngModel">
+                                        <span matPrefix>£&nbsp;</span>
+                                      </mat-form-field>
+                                      <mat-form-field appearance="fill">
+                                        <input matInput type="number" placeholder="VAT" class="example-right-align" name="vatControl" [(ngModel)]="item.vat" #vatControl="ngModel">
+                                        <span matSuffix>%</span>
+                                      </mat-form-field>
+                                      <h3>Add Menu-specific Pricing</h3>
+                                     <mat-slide-toggle class="example-half-width" (change)="ChangeOutOfstock($event)">Item out of stock ?</mat-slide-toggle>
+
+                                   
+                                  </div>
+                                  
+                            </form>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                                

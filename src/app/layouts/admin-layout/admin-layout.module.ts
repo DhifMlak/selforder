@@ -1,3 +1,6 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -14,6 +17,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BlankComponent } from '../../pages/blank/blank.component';
 import { MatTabsModule } from '@angular/material/tabs';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -24,7 +28,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatFormFieldModule,
+    MatIconModule
+    
   ],
   declarations: [
     DashboardComponent,
