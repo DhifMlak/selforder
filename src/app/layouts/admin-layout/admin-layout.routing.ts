@@ -1,3 +1,5 @@
+import { AddItemsComponent } from './../../pages/items/add-items/add-items.component';
+import { AddCategoryComponent } from './../../pages/categories/add-category/add-category.component';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
@@ -20,12 +22,15 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',            component: MapsComponent },
     { path: 'blank',           component: BlankComponent },
     { path: 'menu',            component: OverviewComponent , children: [
-        { path: 'items',           component: ItemsComponent },
         { path: 'menus',           component: MenusComponent },
-        { path: 'categories',      component: CategoriesComponent },
+        
         { path: 'overview',        component: OverviewComponent },
         { path: 'modifer-groups',  component: ModifierGroupsComponent }
     ] },
+    { path: 'menu/categories',      component: CategoriesComponent },
+    { path: 'menu/categories/add',      component: AddCategoryComponent },
+    { path: 'menu/items',           component: ItemsComponent },
+    { path: 'menu/items/add',           component: AddItemsComponent },
 
 
 ];
