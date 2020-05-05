@@ -1,0 +1,46 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-12"> 
+                                    <a routerLink="/menu/categories"><mat-icon>arrow_back</mat-icon></a>
+                                </div>                            
+                                <div class="col-md-3 col-sm-12">
+                                    <button mat-flat-button color="basic">Delete</button>&nbsp;
+                                    <button mat-flat-button color="basic">Duplicate</button>&nbsp;
+                                    <button type="submit" mat-flat-button color="primary" [disabled]="categoryForm.invalid" (click)="onSubmit()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form #categoryForm= "ngForm" class="example-form" >
+                                     <mat-form-field class="example-full-width">
+                                     <input matInput placeholder="Name"  name="nameControl" [(ngModel)]="category.name" #nameControl="ngModel" required>
+                                     <mat-error *ngIf="nameControl.hasError('required')">Name is required</mat-error>
+                                </mat-form-field>  
+                                <br/>
+                                <h4>Menus for category to appear in*</h4>
+                                 <br/>
+                                
+                                 <mat-form-field>
+                                    <mat-label>Menus</mat-label>
+                                    <mat-select name="menuControl" [(ngModel)]="category.menu" #menuControl="ngModel" multiple required>
+                                      <mat-option *ngFor="let m of menus" [value]="m">{{m.name}}</mat-option>
+
+                                    </mat-select>
+                                    <mat-error *ngIf="menuControl.hasError('required')">You have to select one menu</mat-error>
+                                  </mat-form-field>
+                                  
+                            </form>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
