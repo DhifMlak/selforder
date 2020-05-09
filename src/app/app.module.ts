@@ -120,7 +120,7 @@ import { CategoriesService } from './providers/categories.service';
     AddItemsComponent,
     DndDirective,
   ],
-  providers: [AuthenticationService, AuthGuard, CategoriesService
+  providers: [AuthenticationService, AuthGuard, CategoriesService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
