@@ -15,22 +15,20 @@ import { MenusComponent } from '../../pages/menus/menus.component';
 import { ItemsComponent } from '../../pages/items/items.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',       component: DashboardComponent },
-    { path: 'user-profile',    component: UserProfileComponent },
-    { path: 'tables',          component: TablesComponent },
-    { path: 'icons',           component: IconsComponent },
-    { path: 'maps',            component: MapsComponent },
-    { path: 'blank',           component: BlankComponent },
-    { path: 'menu',            component: OverviewComponent , children: [
-        { path: 'menus',           component: MenusComponent },
-        
-        { path: 'overview',        component: OverviewComponent },
-        { path: 'modifer-groups',  component: ModifierGroupsComponent }
-    ] },
-    { path: 'menu/categories',      component: CategoriesComponent },
-    { path: 'menu/categories/add',      component: AddCategoryComponent },
-    { path: 'menu/items',           component: ItemsComponent },
-    { path: 'menu/items/add',           component: AddItemsComponent },
-
-
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'user-profile', component: UserProfileComponent },
+    { path: 'tables', component: TablesComponent },
+    { path: 'icons', component: IconsComponent },
+    { path: 'maps', component: MapsComponent },
+    { path: 'blank', component: BlankComponent },
+    { path: 'menu', component: OverviewComponent, children: [
+            { path: 'menus', component: MenusComponent },
+            { path: 'overview', component: OverviewComponent },
+            { path: 'modifer-groups', component: ModifierGroupsComponent },
+            { path: 'categories', component: CategoriesComponent },
+            { path: 'categories/add', component: AddCategoryComponent },
+            { path: 'items', component: ItemsComponent },
+            { path: 'items/add', component: AddItemsComponent },
+        ]
+    },
 ];
