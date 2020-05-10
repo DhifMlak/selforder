@@ -24,6 +24,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
@@ -31,7 +32,6 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatTabsModule,
     MatFormFieldModule,
     MatIconModule
-    
   ],
   declarations: [
     DashboardComponent,

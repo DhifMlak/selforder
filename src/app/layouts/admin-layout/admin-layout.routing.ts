@@ -15,20 +15,19 @@ import { MenusComponent } from '../../pages/menus/menus.component';
 import { ItemsComponent } from '../../pages/items/items.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: '', component: DashboardComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'tables', component: TablesComponent },
     { path: 'icons', component: IconsComponent },
     { path: 'maps', component: MapsComponent },
     { path: 'blank', component: BlankComponent },
-    { path: 'menu', component: OverviewComponent, children: [
-            { path: 'menus', component: MenusComponent },
-            { path: 'overview', component: OverviewComponent },
-            { path: 'modifer-groups', component: ModifierGroupsComponent },
-            { path: 'categories', component: CategoriesComponent },
-            { path: 'categories/add', component: AddCategoryComponent },
-            { path: 'items', component: ItemsComponent },
-            { path: 'items/add', component: AddItemsComponent },
-        ]
-    },
+    { path: 'menu', component: OverviewComponent },
+    { path: 'menus', component: MenusComponent },
+    { path: 'overview', component: OverviewComponent },
+    { path: 'modifer-groups', component: ModifierGroupsComponent },
+    { path: 'categories', component: CategoriesComponent },
+    { path: 'categories/add', component: AddCategoryComponent },
+    { path: 'items', component: ItemsComponent },
+    { path: 'items/add', component: AddItemsComponent },
 ];

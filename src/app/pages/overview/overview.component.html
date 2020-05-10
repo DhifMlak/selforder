@@ -33,7 +33,6 @@
                                       {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                                     </mat-icon>
                                   </button>
-                                  {{node |json}}
                                   <a *ngIf="node.level == 0"  routerLink="/">{{node.name}}</a>
                                   <a *ngIf="node.level == 1"  routerLink="/">{{node.name}}</a>
                                 </mat-tree-node>
