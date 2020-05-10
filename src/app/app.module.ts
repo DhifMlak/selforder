@@ -103,7 +103,7 @@ import { MenuService } from './providers/menu.service';
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule,
+    MatTabsModule, 
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule
