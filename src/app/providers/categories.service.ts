@@ -11,10 +11,16 @@ export class CategoriesService {
   // TODO: add types
 
   getCategories() {
-    return this.http.get(`${environment.apiUrl}/categories`);
+    return this.http.get(`${environment.apiUrl}/category/all`);
+  }
+  getCategorie(id:any) {
+    return this.http.get(`${environment.apiUrl}/category/${id}`);
   }
   // TODO: add types
   addCategory(category: any) {
-    return this.http.post(`${environment.apiUrl}/categories/add`, category);
+    return this.http.post(`${environment.apiUrl}/category/add`, category);
+  }
+  deleteCategory(id: any) {
+    return this.http.delete(`${environment.apiUrl}/category/${id}`);
   }
 }
