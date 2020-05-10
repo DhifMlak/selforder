@@ -10,10 +10,10 @@ import { AuthGuard } from './providers/auth.guard.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'manager',
     pathMatch: 'full',
   }, {
-    path: '',
+    path: 'manager',
     component: AdminLayoutComponent,
     children: [
       {
@@ -23,7 +23,7 @@ const routes: Routes = [
       }
     ]
   }, {
-    path: '',
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
       {
