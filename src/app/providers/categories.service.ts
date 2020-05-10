@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -10,8 +11,8 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
   // TODO: add types
 
-  getCategories() {
-    return this.http.get(`${environment.apiUrl}/category/all`);
+  getCategories() : Observable<any[]>{
+    return this.http.get<any[]>(`${environment.apiUrl}/category/all`);
   }
   getCategorie(id:any) {
     return this.http.get(`${environment.apiUrl}/category/${id}`);
