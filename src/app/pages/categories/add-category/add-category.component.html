@@ -30,7 +30,6 @@
                                     <mat-label>Menus</mat-label>
                                     <mat-select name="menuControl" [(ngModel)]="category.menu" #menuControl="ngModel" multiple required>
                                       <mat-option *ngFor="let m of menus" [value]="m">{{m.name}}</mat-option>
-
                                     </mat-select>
                                     <mat-error *ngIf="menuControl.hasError('required')">You have to select one menu</mat-error>
                                   </mat-form-field>
