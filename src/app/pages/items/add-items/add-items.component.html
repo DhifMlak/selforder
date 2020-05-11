@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <form #itemForm= "ngForm" class="example-form" >
                                      <mat-form-field class="example-full-width">
-                                     <input matInput placeholder="Name"  name="nameControl" [(ngModel)]="item.name" #nameControl="ngModel" required>
+                                     <input matInput placeholder="Name"  name="nameControl" [(ngModel)]="item.title" #nameControl="ngModel" required>
                                      <mat-error *ngIf="nameControl.hasError('required')">Name is required</mat-error>
                                 </mat-form-field>  
                                 <br/>
@@ -70,11 +70,11 @@
                                   <h3>Assign this item to your existing categories</h3>
                                   <div class="example-container">
                                     <mat-form-field appearance="fill">
-                                        <input matInput type="number" placeholder="Default price" name="priceControl" [(ngModel)]="item.price" #priceControl="ngModel">
+                                        <input matInput type="number" placeholder="Default price" name="priceControl" [(ngModel)]="item.price_info.price" #priceControl="ngModel">
                                         <span matPrefix>£&nbsp;</span>
                                       </mat-form-field>
                                       <mat-form-field appearance="fill">
-                                        <input matInput type="number" placeholder="VAT" class="example-right-align" name="vatControl" [(ngModel)]="item.vat" #vatControl="ngModel">
+                                        <input matInput type="number" placeholder="VAT" class="example-right-align" name="vatControl" [(ngModel)]="item.tax_info.vat_rate_percentage" #vatControl="ngModel">
                                         <span matSuffix>%</span>
                                       </mat-form-field>
                                       <h3>Add Menu-specific Pricing</h3>

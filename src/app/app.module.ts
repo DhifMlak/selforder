@@ -61,6 +61,7 @@ import { DndDirective } from './dnd.directive';
 import { AuthGuard } from './providers/auth.guard.service';
 import { CategoriesService } from './providers/categories.service';
 import { MenuService } from './providers/menu.service';
+import { ItemsService } from './providers/items.service';
 
 @NgModule({
   imports: [
@@ -121,7 +122,7 @@ import { MenuService } from './providers/menu.service';
     AddItemsComponent,
     DndDirective,
   ],
-  providers: [AuthenticationService, AuthGuard, CategoriesService, MenuService,
+  providers: [AuthenticationService, AuthGuard, CategoriesService, MenuService,ItemsService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

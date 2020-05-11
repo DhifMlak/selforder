@@ -17,14 +17,9 @@ export interface PeriodicElement {
 })
 
 export class CategoriesComponent implements OnInit {
-   ELEMENT_DATA: PeriodicElement[] = [
-    {position: 1, categoryName: 'Burger', menu: 'menu', items: '-'},
-    {position: 2, categoryName: 'Burger', menu: 'menu', items: '-'},
-    {position: 3, categoryName: 'Burger', menu: 'menu', items: '-'},
-    
-  ];
+   ELEMENT_DATA: PeriodicElement[] = [];
   displayedColumns: string[] = ['categoryName', 'menu', 'items'];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  dataSource ;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -36,12 +31,17 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       data => {
         data.forEach(element => {
-          this.ELEMENT_DATA.push({position:element._id,categoryName:element.title,menu:'',items:element.items})
-
+          console.log(element._id)
+          this.ELEMENT_DATA.push({position:element._id,categoryName:element.title,menu:'menu',items:element.items.title})
+          console.log(this.ELEMENT_DATA)
+          this.dataSource =  new MatTableDataSource(this.ELEMENT_DATA);
+          console.log(this.dataSource)
         });
       }
+      
 
     )
+    
     this.dataSource.sort = this.sort;
   }
 

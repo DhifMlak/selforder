@@ -1,3 +1,4 @@
+import { ItemsService } from './../../providers/items.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -11,28 +12,37 @@ export interface PeriodicElement {
   ModifierGroups: String;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 1, displayName: 'Burger', notes: 'menu', price: 0, menus: '', categories: '', ModifierGroups: '' },
-  { id: 1, displayName: 'Burger', notes: 'menu', price: 0, menus: '', categories: '', ModifierGroups: '' },
-  { id: 1, displayName: 'Burger', notes: 'menu', price: 0, menus: '', categories: '', ModifierGroups: '' },
-];
+
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-
+   ELEMENT_DATA: PeriodicElement[] = [];
   displayedColumns: string[] = ['displayName', 'notes', 'price', 'menus', 'categories', 'ModifierGroups'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource ;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor() { }
+  constructor(private itemService:ItemsService) { }
 
   ngOnInit(): void {
+    this.itemService.getItems().subscribe(
+      data => {
+        data.forEach(element => {
+          console.log(element._id)
+          this.ELEMENT_DATA.push({ id: 1, displayName: element.title, notes: '', price: element.price_info.price, menus: '', categories: '', ModifierGroups: '' })
+          console.log(this.ELEMENT_DATA)
+          this.dataSource =  new MatTableDataSource(this.ELEMENT_DATA);
+          console.log(this.dataSource)
+        });
+      }
+      
+
+    )
     this.dataSource.sort = this.sort;
   }
 
