@@ -1,0 +1,5 @@
+.rm-pd {
+    background-origin: content-box !important; 
+    background-clip: content-box !important;
+    background-color: #1417170d !important
+}
