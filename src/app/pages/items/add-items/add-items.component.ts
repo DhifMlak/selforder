@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { CategoriesService } from './../../../providers/categories.service';
+import { ItemsService } from './../../../providers/items.service';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { FormControl, Form } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -14,15 +17,15 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 export class AddItemsComponent implements OnInit {
 
   /** Declaration */
-  item = { name: '', description: '', sellown: '', category: [], price: '', vat: '', outofstock: '' };
+  item = { title: '', description: '', sellown: '', category: [], price_info: {price:''}, tax_info: {vat_rate_percentage:''}, outofstock: '' };
   visible = true;
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   categoryCtrl = new FormControl();
   filteredCategory: Observable<string[]>;
-  category: string[] = ['Lemon'];
-  allCategories: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  category: string[] = [];
+  allCategories: string[] = [];
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
@@ -33,7 +36,19 @@ export class AddItemsComponent implements OnInit {
 
   }
 
-  constructor() {
+  constructor(private itemService:ItemsService,private categoryService:CategoriesService,private router: Router
+    ) {
+    this.categoryService.getCategories().subscribe(
+      data => {
+        data.forEach(element => {
+          console.log(element._id)
+          this.allCategories.push(element.title)
+          
+        });
+      }
+      
+
+    )
     this.filteredCategory = this.categoryCtrl.valueChanges.pipe(
       startWith(null),
       map((cat: string | null) => cat ? this._filter(cat) : this.allCategories.slice()));
@@ -42,6 +57,12 @@ export class AddItemsComponent implements OnInit {
 
 
   onSubmit() {
+    this.itemService.addItem(this.item).subscribe(
+      data => {console.log(data)
+        this.router.navigate(['/manager/items'])
+
+      }
+    )
     console.log(this.item)
   }
 
