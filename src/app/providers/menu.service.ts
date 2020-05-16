@@ -14,7 +14,8 @@ export class MenuService {
     return this.httpClient.get(`${environment.apiUrl}/menus/all`);
   }
   getMenuById(id): any {
-    return this.httpClient.get(`${environment.apiUrl}/menus/${id}`).pipe(map(menu => this.transformMenu(menu)));
+    return this.httpClient.get(`${environment.apiUrl}/menus/${id}`)
+    .pipe(map(menu => this.transformMenu(menu)));
   }
 
   transformMenu(menu) {

@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from 'src/app/providers/categories.service';
+import { MenuService } from 'src/app/providers/menu.service';
 
 @Component({
   selector: 'app-add-category',
@@ -8,24 +9,26 @@ import { CategoriesService } from 'src/app/providers/categories.service';
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit {
-  category={title:''}
-  constructor(private categoryService: CategoriesService,private router: Router) { }
+  category = { title: '' };
+  menus$: any;
+  selectable = true;
+  constructor(private categoryService: CategoriesService, private router: Router,
+    private menuService: MenuService) { }
 
   ngOnInit(): void {
+    this.menus$ = this.menuService.getMenus();
   }
-  onSubmit(){
+  onSubmit() {
     console.log(this.category);
     this.categoryService.addCategory(this.category).subscribe(
-      data =>{
-      console.log(data)
-      this.router.navigate(['/manager/categories'])
-    }
-    )
+      data => {
+        this.router.navigate(['/manager/categories']);
+      }
+    );
 
   }
-  selected(event)
-  {
-    console.log("az")
+  selected(event) {
+    console.log(event);
   }
 
 

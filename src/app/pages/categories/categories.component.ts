@@ -18,7 +18,7 @@ export interface PeriodicElement {
 
 export class CategoriesComponent implements OnInit {
    ELEMENT_DATA: PeriodicElement[] = [];
-  displayedColumns: string[] = ['categoryName', 'menu', 'items'];
+  displayedColumns: string[] = ['title', 'menu', 'items'];
   dataSource ;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -30,19 +30,9 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(
       data => {
-        data.forEach(element => {
-          console.log(element._id)
-          this.ELEMENT_DATA.push({position:element._id,categoryName:element.title,menu:'menu',items:element.items.title})
-          console.log(this.ELEMENT_DATA)
-          this.dataSource =  new MatTableDataSource(this.ELEMENT_DATA);
-          console.log(this.dataSource)
-        });
+          this.dataSource =  new MatTableDataSource(data);
+          this.dataSource.sort = this.sort;
       }
-      
-
-    )
-    
-    this.dataSource.sort = this.sort;
+    );
   }
-
 }

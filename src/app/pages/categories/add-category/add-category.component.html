@@ -6,33 +6,38 @@
                     <div class="card shadow">
                         <div class="card-header bg-transparent">
                             <div class="row">
-                                <div class="col-md-9 col-sm-12"> 
-                                    <a routerLink="/manager/categories"><mat-icon>arrow_back</mat-icon></a>
-                                </div>                            
+                                <div class="col-md-9 col-sm-12">
+                                    <a routerLink="/manager/categories">
+                                        <mat-icon>arrow_back</mat-icon>
+                                    </a>
+                                </div>
                                 <div class="col-md-3 col-sm-12">
                                     <button mat-flat-button color="basic">Delete</button>&nbsp;
-                                    <button mat-flat-button color="basic">Duplicate</button>&nbsp;
-                                    <button type="submit" mat-flat-button color="primary" [disabled]="categoryForm.invalid" (click)="onSubmit()">Save</button>
+                                    <button type="submit" mat-flat-button color="primary"
+                                        [disabled]="categoryForm.invalid" (click)="onSubmit()">Save</button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form #categoryForm= "ngForm" class="example-form" >
-                                     <mat-form-field class="example-full-width">
-                                     <input matInput placeholder="Name"  name="nameControl" [(ngModel)]="category.title" #nameControl="ngModel" required>
-                                     <mat-error *ngIf="nameControl.hasError('required')">Name is required</mat-error>
-                                </mat-form-field>  
-                                <br/>
+                            <form #categoryForm="ngForm">
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput placeholder="Name" name="nameControl" [(ngModel)]="category.title"
+                                        #nameControl="ngModel" required>
+                                    <mat-error *ngIf="nameControl.hasError('required')">Name is required</mat-error>
+                                </mat-form-field>
+                                <br />
                                 <h4>Menus for category to appear in*</h4>
-                                 <br/>
-                                 <mat-chip-list (selectionChange)="selected($event)">
-                                    <mat-chip >Menu</mat-chip>
-
-                                  </mat-chip-list>
-                                 
-                                  
-                            </form>
+                                <br />
+                  
+                                    <mat-chip-list selectable="true" *ngIf="menus$ | async as menus"
+                                        (change)="selected($event)">
+                                        <mat-chip [selectable]="selectable"  *ngFor="let menu of menus"> {{ menu.title }}</mat-chip>
+                                    </mat-chip-list>
                            
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
