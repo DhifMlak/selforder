@@ -17,6 +17,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BlankComponent } from '../../pages/blank/blank.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatChipsModule} from '@angular/material/chips';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -30,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     NgbModule,
     ClipboardModule,
     MatTabsModule,
+    MatChipsModule,
     MatFormFieldModule,
     MatIconModule
   ],
