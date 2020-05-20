@@ -29,13 +29,14 @@
                                 <br />
                                 <h4>Menus for category to appear in*</h4>
                                 <br />
-                  
-                                    <mat-chip-list selectable="true" *ngIf="menus$ | async as menus"
-                                        (change)="selected($event)">
-                                        <mat-chip [selectable]="selectable"  *ngFor="let menu of menus"> {{ menu.title }}</mat-chip>
-                                    </mat-chip-list>
-                           
+                                <mat-form-field class="w-100" *ngIf="menus$ | async as menus">
 
+                                    <mat-chip-list [multiple]="true" selectable>
+                                        <mat-chip (click)="toggleChip(menu._id)" [selected]="chips.has(menu._id)"
+                                            *ngFor=" let menu of menus"> {{ menu.title }}</mat-chip>
+                                    </mat-chip-list>
+
+                                </mat-form-field>
                             </form>
 
                         </div>
