@@ -1,3 +1,4 @@
+import { AddModifierGroupComponent } from './../../pages/modifier-groups/add-modifier-group/add-modifier-group.component';
 import { AddItemsComponent } from './../../pages/items/add-items/add-items.component';
 import { AddCategoryComponent } from './../../pages/categories/add-category/add-category.component';
 import { Routes } from '@angular/router';
@@ -30,5 +31,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'categories/add', component: AddCategoryComponent },
     { path: 'items', component: ItemsComponent },
     { path: 'items/add', component: AddItemsComponent },
-    { path: 'modifer-groups/add', component: ModifierGroupsComponent },
+    { path: 'groups/add', component: AddModifierGroupComponent },
 ];

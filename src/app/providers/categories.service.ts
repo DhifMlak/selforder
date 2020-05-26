@@ -23,6 +23,9 @@ export class CategoriesService {
   addCategory(category: any) {
     return this.http.post(`${environment.apiUrl}/category/add`, category);
   }
+  addItemCategory(id: any,idi: any) {
+    return this.http.put(`${environment.apiUrl}/category/${id}`, idi);
+  }
   deleteCategory(id: any) {
     return this.http.delete(`${environment.apiUrl}/category/${id}`);
   }

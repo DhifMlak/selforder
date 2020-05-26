@@ -19,14 +19,9 @@ export class ModifierGroupsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  constructor(private categoryService: CategoriesService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(
-      data => {
-          this.dataSource =  new MatTableDataSource(data);
-          this.dataSource.sort = this.sort;
-      }
-    );
+    
   }
 }
