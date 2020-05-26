@@ -26,6 +26,8 @@ export class AddItemsComponent implements OnInit {
   filteredCategory: Observable<string[]>;
   category: string[] = [];
   allCategories: string[] = [];
+  sellown = true;
+  showAddButton: boolean = false;
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
@@ -52,6 +54,8 @@ export class AddItemsComponent implements OnInit {
     this.filteredCategory = this.categoryCtrl.valueChanges.pipe(
       startWith(null),
       map((cat: string | null) => cat ? this._filter(cat) : this.allCategories.slice()));
+      this.showAddButton = this.allCategories.length === 0;
+    
   }
 
 
@@ -75,6 +79,13 @@ export class AddItemsComponent implements OnInit {
   }
   OnchangeSellItem(event) {
     console.log(event.value)
+    if(event.value === 'yes')
+    {
+      this.sellown = true;
+    }
+    else{
+      this.sellown = false;
+    }
     this.item.sellown = event.value;
   }
 

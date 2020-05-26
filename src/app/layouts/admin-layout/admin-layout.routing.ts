@@ -30,4 +30,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'categories/add', component: AddCategoryComponent },
     { path: 'items', component: ItemsComponent },
     { path: 'items/add', component: AddItemsComponent },
+    { path: 'modifer-groups/add', component: ModifierGroupsComponent },
 ];

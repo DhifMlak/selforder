@@ -62,6 +62,7 @@ import { AuthGuard } from './providers/auth.guard.service';
 import { CategoriesService } from './providers/categories.service';
 import { MenuService } from './providers/menu.service';
 import { ItemsService } from './providers/items.service';
+import { AddModifierGroupComponent } from './pages/modifier-groups/add-modifier-group/add-modifier-group.component';
 
 @NgModule({
   imports: [
@@ -121,6 +122,7 @@ import { ItemsService } from './providers/items.service';
     AddCategoryComponent,
     AddItemsComponent,
     DndDirective,
+    AddModifierGroupComponent,
   ],
   providers: [AuthenticationService, AuthGuard, CategoriesService, MenuService,ItemsService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

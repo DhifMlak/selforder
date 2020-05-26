@@ -41,6 +41,7 @@
                                     <mat-radio-button value="yes" >Yes</mat-radio-button>
                                     <mat-radio-button value="no">No</mat-radio-button>
                                   </mat-radio-group>
+                                <div *ngIf="sellown">
                                   <mat-form-field class="example-chip-list">
                                     <mat-chip-list #chipList aria-label="New category">
                                       <mat-chip
@@ -65,6 +66,8 @@
                                         {{cat}}
                                       </mat-option>
                                     </mat-autocomplete>
+                                    <button *ngIf="showAddButton" matSuffix mat-button mat-icon-button ><mat-icon matTooltip='Add'>add</mat-icon></button>
+
                                   </mat-form-field>
                                   <h3>Assign this item to your existing categories</h3>
                                   <div class="example-container">
@@ -77,10 +80,32 @@
                                         <span matSuffix>%</span>
                                       </mat-form-field>
                                       <h3>Add Menu-specific Pricing</h3>
-                                     <mat-slide-toggle class="example-half-width" (change)="ChangeOutOfstock($event)">Item out of stock ?</mat-slide-toggle>
-
-                                   
+                                     <mat-slide-toggle class="example-half-width" (change)="ChangeOutOfstock($event)">Item out of stock ?</mat-slide-toggle>                                   
                                   </div>
+                                  <br>
+                                  <br>
+                                  <br>
+                                  <div class="example-full-width">
+                                  <mat-accordion class="example-full-width">
+                                    <mat-expansion-panel >
+                                      <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                          Customise item
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                          Modifier groups allow customers to use toppings , sides and more to customise items
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                      <button mat-stroked-button>Add modifier group</button>&nbsp;
+                                      <button mat-stroked-button>copy modifier groups from another item</button>&nbsp;
+                                      <button mat-stroked-button>Clear</button>
+
+                                
+                                    </mat-expansion-panel>
+                                    
+                                  </mat-accordion>
+                                </div>
+                                </div>
                                   
                             </form>
                            
