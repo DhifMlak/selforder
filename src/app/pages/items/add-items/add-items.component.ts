@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FilteringEventArgs } from '@syncfusion/ej2-angular-dropdowns';
+import { Query } from '@syncfusion/ej2-data';
+import { EmitType } from '@syncfusion/ej2-base';
 
 @Component({
   selector: 'app-add-items',
@@ -22,17 +25,12 @@ export class AddItemsComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  categoryCtrl = new FormControl();
-  filteredCategory: Observable<string[]>;
-  category: string[] = [];
-  allCategories: string[] = [];
   sellown = true;
-  showAddButton: boolean = false;
-  @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
   files: any[] = [];
-
+  allCategories;
+  public fields: Object = { text: 'title', value: '_id' };
+  selectedCat;
   /** End of declaration section */
   ngOnInit() {
 
@@ -42,19 +40,11 @@ export class AddItemsComponent implements OnInit {
     ) {
     this.categoryService.getCategories().subscribe(
       data => {
-        data.forEach(element => {
-          console.log(element._id)
-          this.allCategories.push(element.title)
-          
-        });
+        console.log(data)       
+          this.allCategories = data ;  
       }
-      
-
     )
-    this.filteredCategory = this.categoryCtrl.valueChanges.pipe(
-      startWith(null),
-      map((cat: string | null) => cat ? this._filter(cat) : this.allCategories.slice()));
-      this.showAddButton = this.allCategories.length === 0;
+    
     
   }
 
@@ -62,7 +52,10 @@ export class AddItemsComponent implements OnInit {
 
   onSubmit() {
     this.itemService.addItem(this.item).subscribe(
-      data => {console.log(data)
+      data => {
+        console.log(data)
+        console.log(data[0]._id)
+        this.categoryService.addItemCategory(data[0]._id,{idi:this.selectedCat._id}).subscribe();
         this.router.navigate(['/manager/items'])
 
       }
@@ -153,49 +146,16 @@ export class AddItemsComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
   /** End of Image section */
-
-  /** Category Section */
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our fruit
-    if ((value || '').trim()) {
-      this.category.push(value.trim());
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-
-    this.categoryCtrl.setValue(null);
+  public onFiltering: EmitType<any> =  (e: FilteringEventArgs) => {
+    let query = new Query();
+    //frame the query based on search string with filter type.
+    query = (e.text != "") ? query.where("title", "startswith", e.text, true) : query;
+    //pass the filter data source, filter query to updateData method.
+    e.updateData(this.allCategories, query);
+  };
+  SelectCatgorie($event)
+  {
+    this.selectedCat = $event.itemData ;
+    console.log($event);
   }
-
-  remove(cat: string): void {
-    const index = this.category.indexOf(cat);
-
-    if (index >= 0) {
-      this.category.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    console.log(event.option.viewValue)
-    this.category.push(event.option.viewValue);
-    this.item.category = this.category;
-
-    console.log(this.category)
-    console.log(this.item.category)
-
-    this.categoryInput.nativeElement.value = '';
-    this.categoryCtrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allCategories.filter(cat => cat.toLowerCase().indexOf(filterValue) === 0);
-  }
-  /** End of category section */
 }

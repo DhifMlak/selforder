@@ -33,7 +33,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTabsModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    
   ],
   declarations: [
     DashboardComponent,

@@ -42,33 +42,7 @@
                                     <mat-radio-button value="no">No</mat-radio-button>
                                   </mat-radio-group>
                                 <div *ngIf="sellown">
-                                  <mat-form-field class="example-chip-list">
-                                    <mat-chip-list #chipList aria-label="New category">
-                                      <mat-chip
-                                        *ngFor="let cat of category"
-                                        [selectable]="selectable"
-                                        [removable]="removable"
-                                        (removed)="remove(cat)">
-                                        {{cat}}
-                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                      </mat-chip>
-                                      <input
-                                        placeholder="New Category..."
-                                        #fruitInput
-                                        [formControl]="categoryCtrl"
-                                        [matAutocomplete]="auto"
-                                        [matChipInputFor]="chipList"
-                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                        (matChipInputTokenEnd)="add($event)">
-                                    </mat-chip-list>
-                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                                      <mat-option *ngFor="let cat of filteredCategory | async" [value]="cat">
-                                        {{cat}}
-                                      </mat-option>
-                                    </mat-autocomplete>
-                                    <button *ngIf="showAddButton" matSuffix mat-button mat-icon-button ><mat-icon matTooltip='Add'>add</mat-icon></button>
-
-                                  </mat-form-field>
+                                  <ejs-dropdownlist id='ddlelement' #samples [dataSource]='allCategories' [fields]='fields' placeholder='Select categorie' [allowFiltering]='true' (filtering)='onFiltering($event)' (select)="SelectCatgorie($event)"></ejs-dropdownlist>
                                   <h3>Assign this item to your existing categories</h3>
                                   <div class="example-container">
                                     <mat-form-field appearance="fill">

@@ -63,6 +63,7 @@ import { CategoriesService } from './providers/categories.service';
 import { MenuService } from './providers/menu.service';
 import { ItemsService } from './providers/items.service';
 import { AddModifierGroupComponent } from './pages/modifier-groups/add-modifier-group/add-modifier-group.component';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 
 @NgModule({
   imports: [
@@ -108,7 +109,8 @@ import { AddModifierGroupComponent } from './pages/modifier-groups/add-modifier-
     MatTabsModule, 
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    DropDownListModule
   ],
   declarations: [
     AppComponent,
