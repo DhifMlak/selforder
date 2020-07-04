@@ -11,7 +11,7 @@ export class ItemsService {
   constructor(private http: HttpClient) { }
   // TODO: add types
 
-  getItems() : Observable<any[]>{
+  getItems(): Observable<any[]> {
     return this.http.get<any[]>(`${environment.apiUrl}/items/all`);
   }
   getItem(id:any) {

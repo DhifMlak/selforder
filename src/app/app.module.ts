@@ -63,7 +63,10 @@ import { CategoriesService } from './providers/categories.service';
 import { MenuService } from './providers/menu.service';
 import { ItemsService } from './providers/items.service';
 import { AddModifierGroupComponent } from './pages/modifier-groups/add-modifier-group/add-modifier-group.component';
+
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+
+import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
 
 @NgModule({
   imports: [
@@ -125,6 +128,7 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
     AddItemsComponent,
     DndDirective,
     AddModifierGroupComponent,
+    ClientLayoutComponent,
   ],
   providers: [AuthenticationService, AuthGuard, CategoriesService, MenuService,ItemsService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
