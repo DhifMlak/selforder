@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ItemsService } from '../../../providers/items.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-modifier-group',
@@ -6,12 +10,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-modifier-group.component.css']
 })
 export class AddModifierGroupComponent implements OnInit {
-  group = { title: '',  modifier_options: {types:''}, quantity_info: {quantity:{max_permitted:0 , min_permitted: 0 }} };
+  myControl = new FormControl();
+  options$: Observable<Array<any>>;
+  group = { title: '', modifier_options: { types: '' }, quantity_info: { quantity: { max_permitted: 0, min_permitted: 0 } } };
   type1 = false;
-  type2= true;
-  constructor() { }
+  type2 = true;
+  selectedMG;
+  selectedMGs = [];
+  disabled = true;
+  constructor(private itemService: ItemsService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.options$ = await this.itemService.getItems();
   }
-  onSubmit(){}
+  displayFn(option): string {
+    return option && option.title ? option.title : '';
+  }
+
+  async selected(e) {
+    console.log(e.option.value);
+    this.selectedMG = e.option.value;
+    this.disabled = false;
+  }
+
+  async add() {
+    this.selectedMGs.push(this.selectedMG);
+    this.selectedMG = null;
+    this.disabled = true;
+  }
+
+  remove(mg) {
+    this.selectedMGs = this.selectedMGs.filter(elem => elem !== mg);
+    console.log(mg);
+  }
+  onSubmit() { }
 }
