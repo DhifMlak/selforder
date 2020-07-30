@@ -19,7 +19,7 @@ export interface PeriodicElement {
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-   ELEMENT_DATA: PeriodicElement[] = [];
+  ELEMENT_DATA: PeriodicElement[] = [];
   displayedColumns: string[] = ['displayName', 'notes', 'price', 'menus', 'categories', 'ModifierGroups'];
   dataSource ;
   applyFilter(event: Event) {
